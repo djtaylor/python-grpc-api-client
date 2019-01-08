@@ -1,4 +1,3 @@
-dex_version=2_13_0
 docker_image_tag=python-grpc-api-server
 
 build:
