@@ -1,18 +1,30 @@
-dex_version='2.13.0'
+dex_version=2_13_0
+docker_image_tag=python-grpc-api-server
 
-go:
-	python3 -m grpc_tools.protoc -I. --python_out=./dex_grpc/dex --grpc_python_out=. protoc/dex_api_2-13-0.proto
+build:
+	docker build . -t ${docker_image_tag} -f Dockerfile
+	docker run -d -p 35557:5557 --name ${docker_image_tag} ${docker_image_tag}
 
-build_dex:
-	docker build . -t python-dex-grpc-server -f Dockerfile_Dex --no-cache
-
-run_dex:
-	-docker rm python-dex-grpc-server
-	-docker kill python-dex-grpc-server
-	docker run -d -p 35557:5557 --name python-dex-grpc-server python-k8s-dex-server serve /etc/dex/dex-config.yaml
+run:
+	-docker rm ${docker_image_tag}
+	-docker kill ${docker_image_tag}
+	docker run -d -p 35557:5557 --name ${docker_image_tag} ${docker_image_tag}
 
 install:
-	sudo python3 setup.py install
+	virtualenv --python python3 venv
+	chmod +x venv/bin/activate
+	env bash venv/bin/activate
+	pip3 install -r requirements.txt
+	python3 setup.py install
+
+clean:
+	-docker rm ${docker_image_tag}
+	-docker kill ${docker_image_tag}
 
 test:
+	env bash venv/bin/activate
+	python3 -m grpc_tools.protoc -I./proto \
+  --python_out=./ \
+  --grpc_python_out=./ \
+  proto/grpc_api_client/grpc/test/api.proto
 	python3 setup.py test

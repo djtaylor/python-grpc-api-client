@@ -1,7 +1,8 @@
-dex_grpc.egg-info
+grpc_api_client.egg-info
 build
 dist
 *.pyc
 __pycache__
 .pytest_cache
 .eggs
+venv

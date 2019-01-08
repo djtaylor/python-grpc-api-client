@@ -2,22 +2,22 @@
 from setuptools import setup, find_packages
 
 # Import the module version
-from k8s_dex import __version__
+from grpc_api_client import __version__
 
 # Run the setup
 setup(
-    name             = 'k8s_dex',
+    name             = 'grpc_api_client',
     version          = __version__,
-    description      = 'Library for interacting a Dex gRPC server.',
+    description      = 'Python bindings for interacting with a gRPC API server.',
     long_description = open('DESCRIPTION.rst').read(),
     author           = 'David Taylor',
     author_email     = 'djtaylor13@gmail.com',
-    url              = 'http://github.com/djtaylor/python-dex-grpc',
+    url              = 'http://github.com/djtaylor/python-grpc-api-client',
     license          = 'GPLv3',
     test_suite       = 'nose.collector',
     tests_require    = ['nose'],
     packages         = find_packages(),
-    keywords         = 'grpc rpc dex api',
+    keywords         = 'grpc rpc api',
     classifiers      = [
         'Development Status :: 3 - Alpha',
         'Environment :: Console',

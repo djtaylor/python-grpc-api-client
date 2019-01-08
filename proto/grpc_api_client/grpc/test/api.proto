@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package api;
+
+message BoolTestReq {
+  bool value = 1;
+}
+
+message BoolTestResp {
+  bool value = 1;
+}
+
+message StringTestReq {
+  string value = 1;
+}
+
+message StringTestResp {
+  string value = 1;
+}
+
+message Int32TestReq {
+  int32 value = 1;
+}
+
+message Int32TestResp {
+  int32 value = 1;
+}
+
+message Int64TestReq {
+  int64 value = 1;
+}
+
+message Int64TestResp {
+  int64 value = 1;
+}
+
+message Uint32TestReq {
+  uint32 value = 1;
+}
+
+message Uint32TestResp {
+  uint32 value = 1;
+}
+
+message Uint64TestReq {
+  uint64 value = 1;
+}
+
+message Uint64TestResp {
+  uint64 value = 1;
+}
+
+message BytesTestReq {
+  bytes value = 1;
+}
+
+message BytesTestResp {
+  bytes value = 1;
+}
+
+// APITest represents the test gRPC server
+service APITest {
+  rpc BoolTest(BoolTestReq) returns (BoolTestResp) {};
+  rpc StringTest(StringTestReq) returns (StringTestResp) {};
+  rpc Int32Test(Int32TestReq) returns (Int32TestResp) {};
+  rpc Int64Test(Int64TestReq) returns (Int64TestResp) {};
+  rpc Uint32Test(Uint32TestReq) returns (Uint32TestResp) {};
+  rpc Uint64Test(Uint64TestReq) returns (Uint64TestResp) {};
+  rpc BytesTest(BytesTestReq) returns (BytesTestResp) {};
+}
