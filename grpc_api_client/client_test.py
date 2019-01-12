@@ -69,8 +69,8 @@ class gRPC_API_Client_Test(unittest.TestCase):
         client = gRPC_API_Test_Client.create(secure=False)
         self.assertIsInstance(client, gRPC_API_Client)
 
-    def test_dex_api_stub(self):
-        """ Test generating an instance of the DexStub class """
+    def test_api_stub(self):
+        """ Test generating an instance of the API stub class """
         client = gRPC_API_Test_Client.create()
         self.assertIsInstance(client.interface.stub, client.interface.stub_class)
 

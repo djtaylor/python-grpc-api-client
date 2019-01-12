@@ -11,10 +11,12 @@ client.connect(tp['host'], tp['port'],
     client_key = tp['client_key']
 )
 
+print(client.api.BytesTest(value=b'test').json)
+
 for name, method in client.api:
     print('API Method: {}: {}'.format(name, method))
-    print('  InputClass: {}: {}'.format(method.input.name, method.input))
+    print('  InputClass: {}'.format(method.input.handler))
     print('    > Fields:')
     for field_name, field_obj in method.input_fields():
         print('      > {}: {}'.format(field_name, field_obj))
-    print('  OutputClass: {}: {}'.format(method.output.name, method.output))
+    print('  OutputClass: {}'.format(method.output.handler))

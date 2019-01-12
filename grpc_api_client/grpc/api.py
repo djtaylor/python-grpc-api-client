@@ -1,3 +1,4 @@
+import json
 from importlib import import_module
 from google.protobuf.json_format import MessageToJson
 
@@ -5,9 +6,18 @@ class gRPC_API_Response(object):
     """
     Class object for handling responses from Dex gRPC server.
     """
-    def __init__(self, response):
-        self.json = MessageToJson(response)
-        self.protobuf = response
+    def __init__(self, response, output_handler, fields):
+        self.json        = MessageToJson(response)
+        self.protobuf    = output_handler(**self._get_field_values(response, fields))
+
+    def _get_field_values(self, response, fields):
+        """
+        Return an object of field/key values from a request object post-request.
+        """
+        response_fields = {}
+        for field in fields:
+            response_fields[field[0]] = getattr(response, field[0])
+        return response_fields
 
 class gRPC_API_Method_IO_Map(object):
     """
@@ -34,8 +44,8 @@ class gRPC_API_Path(object):
         self.input = gRPC_API_Method_IO_Map(method['input_type'], method['input_handler'])
         self.output = gRPC_API_Method_IO_Map(method['output_type'], method['output_handler'])
 
-        # Stub class
-        self._stub = method['stub']
+        # Stub instance
+        self.stub = self._settings.bindings.stub_object
 
     def input_fields(self):
         """
@@ -47,8 +57,8 @@ class gRPC_API_Path(object):
         """
         Call the underlying stub method for this API path.
         """
-        #stub = self._settings.bindings.get_stub()
-        return gRPC_API_Response(self.input.handler(**kwargs))
+        response = getattr(self.stub, self.name)(self.input.handler(**kwargs))
+        return gRPC_API_Response(response, self.output.handler, self.input_fields())
 
 class gRPC_API_Collection(object):
     """

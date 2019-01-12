@@ -8,6 +8,8 @@ API_TEST_PARAMS = {
     'ca_cert': getenv('PY_GRPC_API_TEST_CA_CERT', 'docker_files/grpc_tls/ca.crt'),
     'client_cert': getenv('PY_GRPC_API_TEST_CLIENT_CERT', 'docker_files/grpc_tls/client.crt'),
     'client_key': getenv('PY_GRPC_API_TEST_CLIENT_KEY', 'docker_files/grpc_tls/client.key'),
+    'server_cert': getenv('PY_GRPC_API_TEST_SERVER_CERT', 'docker_files/grpc_tls/server.crt'),
+    'server_key': getenv('PY_GRPC_API_TEST_SERVER_KEY', 'docker_files/grpc_tls/server.key'),
     'api_proto': 'grpc_api_client.grpc.test.api_pb2',
     'api_grpc': 'grpc_api_client.grpc.test.api_pb2_grpc',
     'stub_name': 'APITestStub',

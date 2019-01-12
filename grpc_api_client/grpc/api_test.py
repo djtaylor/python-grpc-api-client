@@ -1,7 +1,7 @@
 import string
 import unittest
 from numpy import random
-from random import getrandbits, choice
+from random import getrandbits, choice, randint
 
 class gRPC_API_Test_Field(object):
     """
@@ -46,7 +46,7 @@ class gRPC_API_Test_Field(object):
 
     def _random_bool(self):
         """ Return a random boolean """
-        return bool(getrandbits(1))
+        return random.choice([True, False])
 
     def _random_bytes(self):
         """ Return a random bytes object """
@@ -58,11 +58,13 @@ class gRPC_API_Test_Field(object):
 
     def _random_int32(self):
         """ Return a random 32 bit integer """
-        return getrandbits(32)
+        i = 2147483648
+        return randint(-i, i)
 
     def _random_int64(self):
         """ Return a random 64 bit integer """
-        return getrandbits(64)
+        i = 9223372036854775807
+        return randint(-i, i)
 
     def _random_str(self):
         """ Return a random unicode string """
@@ -83,7 +85,6 @@ class gRPC_API_Test_Field(object):
         """
         for type_str, type_attrs in self._types.items():
             if type_attrs[0] == self.descriptor.type:
-                print('type match: {} = {}'.format(type_attrs[0], self.descriptor.type))
                 self._type_int = type_attrs[0]
                 self._type_str = type_str
 
@@ -94,7 +95,9 @@ class gRPC_API_Test_Field(object):
         random_value_method = self._types[self._type_str][1]
         if random_value_method:
             return random_value_method()
-        print('Random generated for data type [{}] not implemented'.format(self._type_str))
+
+        # Not implemented
+        raise Exception('Generating test value for "{}" not implemented'.format(self_type_str))
 
 class gRPC_API_Test_Fields(object):
     """
@@ -118,5 +121,4 @@ class gRPC_API_Test_Fields(object):
                 continue
             else:
                 input_fields[name] = field.get_test_value()
-                print('Generated random value for [{}({})]: {}'.format(field.name, field._type_str, input_fields[name]))
         return input_fields
