@@ -1,4 +1,5 @@
-from grpc_api_client.grpc.test import API_TEST_PARAMS as tp
+from grpc_api_client.grpc.sample import API_TEST_PARAMS as tp
+from grpc_api_client.grpc.api_test import gRPC_API_Test_Fields
 from grpc_api_client.client import gRPC_API_Client
 
 client = gRPC_API_Client(
@@ -20,3 +21,5 @@ for name, method in client.api:
     for field_name, field_obj in method.input_fields():
         print('      > {}: {}'.format(field_name, field_obj))
     print('  OutputClass: {}'.format(method.output.handler))
+
+    print('  SampleFields: {}'.format(gRPC_API_Test_Fields.create(method)))

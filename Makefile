@@ -1,6 +1,10 @@
 docker_image_tag=python-grpc-api-server
 
 build:
+	venv/bin/python3 -m grpc_tools.protoc -I./proto \
+	--python_out=./ \
+	--grpc_python_out=./ \
+	proto/grpc_api_client/grpc/sample/api.proto
 	docker build . -t ${docker_image_tag} -f Dockerfile
 
 run:
@@ -22,10 +26,6 @@ clean:
 
 test:
 	env bash venv/bin/activate
-	venv/bin/python3 -m grpc_tools.protoc -I./proto \
-  --python_out=./ \
-  --grpc_python_out=./ \
-  proto/grpc_api_client/grpc/test/api.proto
 	venv/bin/python3 setup.py test
 
 logs:

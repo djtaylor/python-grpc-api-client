@@ -4,58 +4,72 @@ package api;
 
 message BoolTestReq {
   bool value = 1;
+  repeated bool values = 2;
 }
 
 message BoolTestResp {
   bool value = 1;
+  repeated bool values = 2;
 }
 
 message StringTestReq {
   string value = 1;
+  repeated bool values = 2;
 }
 
 message StringTestResp {
   string value = 1;
+  repeated string values = 2;
 }
 
 message Int32TestReq {
   int32 value = 1;
+  repeated string values = 2;
 }
 
 message Int32TestResp {
   int32 value = 1;
+  repeated int32 values = 2;
 }
 
 message Int64TestReq {
   int64 value = 1;
+  repeated int32 values = 2;
 }
 
 message Int64TestResp {
   int64 value = 1;
+  repeated int64 values = 2;
 }
 
 message Uint32TestReq {
   uint32 value = 1;
+  repeated int64 values = 2;
 }
 
 message Uint32TestResp {
   uint32 value = 1;
+  repeated uint32 values = 2;
 }
 
 message Uint64TestReq {
   uint64 value = 1;
+  repeated uint64 values = 2;
 }
 
 message Uint64TestResp {
   uint64 value = 1;
+  repeated uint64 values = 2;
 }
 
 message BytesTestReq {
   bytes value = 1;
+  repeated bytes values = 2;
 }
 
 message BytesTestResp {
   bytes value = 1;
+  repeated bytes values = 2;
 }
 
 // APITest represents the test gRPC server

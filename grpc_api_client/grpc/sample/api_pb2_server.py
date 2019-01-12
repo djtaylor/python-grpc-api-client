@@ -7,8 +7,8 @@ from grp import getgrgid
 from stat import ST_MODE
 from os import stat as path_stat
 from concurrent.futures import ThreadPoolExecutor
-from grpc_api_client.grpc.test import API_TEST_PARAMS as tp
-from grpc_api_client.grpc.test import api_pb2, api_pb2_grpc
+from grpc_api_client.grpc.sample import API_TEST_PARAMS as tp
+from grpc_api_client.grpc.sample import api_pb2, api_pb2_grpc
 from grpc_api_client.grpc.channel import gRPC_API_Credentials
 
 SRV_TARGET='0.0.0.0:5557'
@@ -27,30 +27,37 @@ class APITestServicer(api_pb2_grpc.APITestServicer):
     """
     def BoolTest(self, request, context):
         log.info('Handling BoolTest: value={}'.format(request.value))
+        log.info('Handling BoolTest: values={}'.format(request.values))
         return request
 
     def StringTest(self, request, context):
         log.info('Handling StringTest: value={}'.format(request.value))
+        log.info('Handling StringTest: values={}'.format(request.values))
         return request
 
     def Int32Test(self, request, context):
         log.info('Handling Int32Test: value={}'.format(request.value))
+        log.info('Handling Int32Test: values={}'.format(request.values))
         return request
 
     def Int64Test(self, request, context):
         log.info('Handling Int64Test: value={}'.format(request.value))
+        log.info('Handling Int64Test: values={}'.format(request.values))
         return request
 
     def Uint32Test(self, request, context):
         log.info('Handling Uint32Test: value={}'.format(request.value))
+        log.info('Handling Uint32Test: values={}'.format(request.values))
         return request
 
     def Uint64Test(self, request, context):
         log.info('Handling Uint64Test: value={}'.format(request.value))
+        log.info('Handling Uint64Test: values={}'.format(request.values))
         return request
 
     def BytesTest(self, request, context):
         log.info('Handling BytesTest: value={}'.format(request.value))
+        log.info('Handling BytesTest: values={}'.format(request.values))
         return request
 
 def get_mode_string(target_path):

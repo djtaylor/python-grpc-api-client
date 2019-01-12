@@ -1,5 +1,6 @@
 import unittest
-from grpc_api_client.grpc.test import gRPC_API_Client_Test_Settings
+
+from grpc_api_client.grpc.sample import gRPC_API_Client_Test_Settings
 from grpc_api_client.grpc.channel import gRPC_API_Channel
 
 class gRPC_API_Test_Channel(object):

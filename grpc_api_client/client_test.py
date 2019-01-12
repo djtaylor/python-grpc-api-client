@@ -1,8 +1,8 @@
 import unittest
 from parameterized import parameterized
 from grpc_api_client.client import gRPC_API_Client, gRPC_API_Bindings
-from grpc_api_client.grpc.test import API_TEST_PARAMS
-from grpc_api_client.grpc.api_test import gRPC_API_Test_Fields
+from grpc_api_client.grpc.sample import API_TEST_PARAMS
+from grpc_api_client.grpc.sample import gRPC_API_Test_Fields
 
 def generate_grpc_methods():
     """
