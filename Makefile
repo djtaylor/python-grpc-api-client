@@ -1,4 +1,5 @@
 docker_image_tag=python-grpc-api-server
+docker_port=35557
 
 build:
 	venv/bin/python3 -m grpc_tools.protoc -I./proto \
@@ -10,7 +11,7 @@ build:
 run:
 	-docker kill ${docker_image_tag}
 	-docker rm ${docker_image_tag}
-	docker run -d -p 35557:5557 --name ${docker_image_tag} ${docker_image_tag}
+	docker run -d -p ${docker_port}:5557 --name ${docker_image_tag} ${docker_image_tag}
 
 install:
 	virtualenv --python python3 venv
