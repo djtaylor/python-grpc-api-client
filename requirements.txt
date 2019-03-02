@@ -1,5 +1,4 @@
 grpcio
 grpcio-tools
-bcrypt
 parameterized
 numpy
