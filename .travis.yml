@@ -8,7 +8,7 @@ python:
 services:
   - docker
 
-before_install:
+after_install:
 - make build python_bin=python3
 - make run
 
