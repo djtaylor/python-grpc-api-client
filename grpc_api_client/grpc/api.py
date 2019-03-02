@@ -7,7 +7,7 @@ class gRPC_API_Response(object):
     Class object for handling responses from Dex gRPC server.
     """
     def __init__(self, response, output_handler, fields):
-        self.json        = MessageToJson(response)
+        self.json        = json.loads(MessageToJson(response))
         self.protobuf    = output_handler(**self._get_field_values(response, fields))
 
     def _get_field_values(self, response, fields):
@@ -16,7 +16,8 @@ class gRPC_API_Response(object):
         """
         response_fields = {}
         for field in fields:
-            response_fields[field[0]] = getattr(response, field[0])
+            if hasattr(response, field[0]):
+                response_fields[field[0]] = getattr(response, field[0])
         return response_fields
 
 class gRPC_API_Method_IO_Map(object):

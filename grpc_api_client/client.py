@@ -23,6 +23,12 @@ class gRPC_API_Client(object):
         """
         self.bindings = gRPC_API_Bindings(api_proto, api_grpc)
 
+    def disconnect(self):
+        """
+        Close the connection to the gRPC server.
+        """
+        self.interface.channel.close()
+
     def connect(self, host, port, options={}, ca_cert=None, client_cert=None, client_key=None):
         """
         Create a new client channel to a gRPC server.

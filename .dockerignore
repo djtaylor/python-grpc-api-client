@@ -1,6 +1,6 @@
 venv
 .eggs
 build
-dex_grpc.egg-info
+grpc_api_client.egg-info
 dist
 __pycache__

@@ -1,5 +1,5 @@
 from grpc_api_client.grpc.sample import API_TEST_PARAMS as tp
-from grpc_api_client.grpc.api_test import gRPC_API_Test_Fields
+from grpc_api_client.grpc.sample import gRPC_API_Test_Fields
 from grpc_api_client.client import gRPC_API_Client
 
 client = gRPC_API_Client(

@@ -1,32 +1,33 @@
-docker_image_tag=python-grpc-api-server
+docker_name=python-grpc-api-server
+docker_port=35557
+python_bin=venv/bin/python3
+pip_bin=venv/bin/pip3
 
 build:
-	venv/bin/python3 -m grpc_tools.protoc -I./proto \
+	${python_bin} -m grpc_tools.protoc -I./proto \
 	--python_out=./ \
 	--grpc_python_out=./ \
 	proto/grpc_api_client/grpc/sample/api.proto
-	docker build . -t ${docker_image_tag} -f Dockerfile
+	docker build . -t ${docker_name} -f Dockerfile
 
 run:
-	-docker kill ${docker_image_tag}
-	-docker rm ${docker_image_tag}
-	docker run -d -p 35557:5557 --name ${docker_image_tag} ${docker_image_tag}
+	-docker kill ${docker_name}
+	-docker rm ${docker_name}
+	docker run -d -p ${docker_port}:5557 --name ${docker_name} ${docker_name}
 
 install:
 	virtualenv --python python3 venv
 	chmod +x venv/bin/activate
-	env bash venv/bin/activate
-	venv/bin/pip3 install -r requirements.txt
-	venv/bin/python3 setup.py install
+	${pip_bin} install -r requirements.txt
+	${python_bin} setup.py install
 
 clean:
-	-docker kill ${docker_image_tag}
-	-docker rm ${docker_image_tag}
-	venv/bin/python3 setup.py clean --all
+	-docker kill ${docker_name}
+	-docker rm ${docker_name}
+	${python_bin} setup.py clean --all
 
 test:
-	env bash venv/bin/activate
-	venv/bin/python3 setup.py test
+	${python_bin} setup.py test
 
 logs:
-	docker logs ${docker_image_tag}
+	docker logs ${docker_name}
