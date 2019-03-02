@@ -5,5 +5,12 @@ python:
   - "3.6"
   - "3.7-dev"
 
+services:
+  - docker
+
+before_install:
+- make build
+- make run
+
 install: pip install -r requirements.txt
 script: python setup.py test
